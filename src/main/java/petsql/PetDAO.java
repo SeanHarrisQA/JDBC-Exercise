@@ -72,7 +72,7 @@ public class PetDAO {
 			e.printStackTrace();
 		}
 		return 0;
-	}
+	} // update
 
 	public int delete(int id) {
 		try (Connection conn = DriverManager.getConnection(url, user, password);
@@ -84,5 +84,5 @@ public class PetDAO {
 			e.printStackTrace();
 		}
 		return 0;
-	}
+	} // delete
 }
