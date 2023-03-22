@@ -48,8 +48,6 @@ public class PetDAO {
 				int age = results.getInt("age");
 				String colour = results.getString("colour");
 				String breed = results.getString("breed");
-				// System.out.printf("ID: %d, Name: %s, Age: %d, Colour: %s, Breed: %s%n", id,
-				// name, age, colour, breed);
 				pets.add(new Pet(id, name, age, breed, colour));
 			}
 			return pets;
@@ -76,4 +74,15 @@ public class PetDAO {
 		return 0;
 	}
 
+	public int delete(int id) {
+		try (Connection conn = DriverManager.getConnection(url, user, password);
+				PreparedStatement stmnt = conn.prepareStatement("DELETE FROM pet WHERE id = ? ");) {
+			stmnt.setInt(1, id);
+			return stmnt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("Something bad...");
+			e.printStackTrace();
+		}
+		return 0;
+	}
 }
